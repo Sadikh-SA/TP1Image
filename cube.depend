@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1634055039 source:/home7/ag425107/Moimeme/SYTH IMAGE/M1/cube/main.cpp
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<cstdlib>
+	<ctime>
+	<iostream>
+	<math.h>
+
