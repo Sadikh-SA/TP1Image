@@ -50,8 +50,8 @@ int fCube[6][4]={
 
 char presse;
 int anglex,angley,x,y,xold,yold;
-float r = 0.2;
-float R = 1;
+float r = 0.5;
+float R = 2;
 const int N=8;
 Point tableauPoint[N];
 Point tableauArret[N*N];
@@ -100,6 +100,9 @@ void tore(){
 
 int main(int argc,char **argv)
 {
+
+    /*Chargement du tore*/
+    tore();
   /* initialisation de glut et creation
      de la fenetre */
   glutInit(&argc,argv);
@@ -122,8 +125,8 @@ int main(int argc,char **argv)
   glutMotionFunc(mousemotion);
 
   glMatrixMode( GL_PROJECTION );
-     glLoadIdentity();
-   gluPerspective(60 ,1,.1,30.);
+  glLoadIdentity();
+  gluPerspective(60 ,1,.1,30.);
 
 
 
@@ -138,7 +141,7 @@ void affichage()
   int i,j;
   /* effacement de l'image avec la couleur de fond */
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-glShadeModel(GL_SMOOTH);
+  glShadeModel(GL_SMOOTH);
   glMatrixMode( GL_MODELVIEW );
   glLoadIdentity();
   glTranslatef(0.,0.,-5.);
@@ -146,7 +149,14 @@ glShadeModel(GL_SMOOTH);
   glRotatef(anglex,0.0,1.0,0.0);
   gluLookAt(0,5,-7,0.0,1.25,0.0,0.0,1.0,0.0);
 
-    // Dessin du cube
+      /*glBegin(GL_POLYGON);
+      for (j=0;j<4;j++){
+          glColor3f(pCube[fCube[i][j]].r,pCube[fCube[i][j]].g,pCube[fCube[i][j]].b);
+          glVertex3f(pCube[fCube[i][j]].x,pCube[fCube[i][j]].y,pCube[fCube[i][j]].z);
+      }
+      glEnd();*/
+
+      // Dessin du Tore
     for (i=0;i<N;i++)
     {
         glBegin(GL_LINES);
@@ -155,12 +165,6 @@ glShadeModel(GL_SMOOTH);
             glVertex3f(tableauPoint[(i+1)%N].x , tableauPoint[(i+1)%N].y , tableauPoint[(i+1)%N].z);
         glEnd();
     }
-      /*glBegin(GL_POLYGON);
-      for (j=0;j<4;j++){
-          glColor3f(pCube[fCube[i][j]].r,pCube[fCube[i][j]].g,pCube[fCube[i][j]].b);
-          glVertex3f(pCube[fCube[i][j]].x,pCube[fCube[i][j]].y,pCube[fCube[i][j]].z);
-      }
-      glEnd();*/
     for (j=0;j<N*N;j++)
     {
         glBegin(GL_QUADS);
